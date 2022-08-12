@@ -1,0 +1,75 @@
+const input = require('sync-input');
+
+console.log("Welcome to Currency Converter!");
+
+const currencies = 
+{ USD: 1,
+  JPY: 113.5,
+  EUR: 0.89,
+  RUB: 74.36,
+  GBP: 0.75
+}
+
+for (option in currencies) {
+  console.log(`1 USD equals ${currencies[option]} ${option}`);
+}
+
+let inputWhatUWant;
+
+const whatIsWanted = () => {
+  console.log(`What do you want to do?
+1-Convert currencies 2-Exit program`);
+  return inputWhatWanted = input();
+}
+
+const theConversion = () => {
+  console.log(`What do you want to convert?`)
+
+  let unconverted = input("From: ").toUpperCase();
+
+  switch (true) {
+    case unconverted in currencies:
+      let choice = input("To: ").toUpperCase();
+      switch (true) {
+        case choice in currencies:
+          let amount = input("Amount: ");
+          switch (true) {
+            case amount >= 1:
+              console.log(`Result: ${amount} ${unconverted} equals ${(amount / currencies[unconverted] * currencies[choice]).toFixed(4)} ${choice}`);
+              break;
+      
+            case amount < 1:
+              console.log(`The amount cannot be less than 1`);
+              break;
+      
+            default:
+              console.log(`The amount has to be a number`);
+              break;
+          }
+          break;
+        
+        default:
+          console.log(`Unknown currency`);
+          break;
+      }
+      break;
+      
+    default:
+      console.log(`Unknown currency`);
+      break;
+  }
+}
+
+whatIsWanted();
+
+if (inputWhatWanted === "1") {
+  while (inputWhatWanted === "1") {
+    theConversion();
+    whatIsWanted();
+  }
+} else if (inputWhatWanted === "2") {
+  console.log("Have a nice day!");
+} else {
+  console.log("Unknown input");
+  whatIsWanted();
+}
